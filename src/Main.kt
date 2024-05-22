@@ -2,7 +2,7 @@ import java.util.*
 
 fun main(){
 
-    var num = 495
+    val num = 495
     var result = ""
     result+= if (isEven(num)) "Number is Even\n" else "Number is Odd\n"
     result+= "Number of digits is ${digitCount(num)}\n"
@@ -21,12 +21,12 @@ fun digitCount(number : Int) = number.toString().length
 
 fun digitSum(number: Int): Int = number.toString().map { it - '0' }.sum()
 
-fun reverse(number : Int) = number.toString().reversed()
+fun reverse(number : Int) = number.toString().reversed().toInt()
 
-fun isPalindrome(number:Int) = number==reverse(number).toInt()
+fun isPalindrome(number:Int) = number==reverse(number)
 
 fun decimalToBin(n: Int): String = n.toString(2) 
 
 fun decimalToOct(n: Int): String = n.toString(8)
 
-fun decimalToHex(n: Int): String = n.toString(16).toUpperCase()
+fun decimalToHex(n: Int): String = n.toString(16).uppercase(Locale.getDefault())
