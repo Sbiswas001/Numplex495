@@ -9,6 +9,9 @@ fun main(){
     result+= "Sum of digits is ${digitSum(num)}\n"
     result+= "Reverse of number is ${reverse(num)}\n"
     result+= if (isPalindrome(num)) "Number is Palindrome\n" else "Number is not Palindrome\n"
+    result += "Binary representation is ${decimalToBin(num)}\n"
+    result += "Octal representation is ${decimalToOct(num)}\n"
+    result += "Hexadecimal representation is ${decimalToHex(num)}\n"
     println(result)
 }
 
@@ -22,3 +25,8 @@ fun reverse(number : Int) = number.toString().reversed()
 
 fun isPalindrome(number:Int) = number==reverse(number).toInt()
 
+fun decimalToBin(n: Int): String = n.toString(2) 
+
+fun decimalToOct(n: Int): String = n.toString(8)
+
+fun decimalToHex(n: Int): String = n.toString(16).toUpperCase()
