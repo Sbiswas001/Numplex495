@@ -1,45 +1,24 @@
+import java.util.*
+
 fun main(){
-    print("Enter a number:")
-    var num = readLine()?.toInt()?:return
+
+    var num = 495
+    var result = ""
+    result+= if (isEven(num)) "Number is Even\n" else "Number is Odd\n"
+    result+= "Number of digits is ${digitCount(num)}\n"
+    result+= "Sum of digits is ${digitSum(num)}\n"
+    result+= "Reverse of number is ${reverse(num)}\n"
+    result+= if (isPalindrome(num)) "Number is Palindrome\n" else "Number is not Palindrome\n"
+    println(result)
 }
 
-fun oddEven(number:Int):Boolean {
-    if(number%2==0){
-       return true
-    }
-    else{
-        return false
-    }
-}
+fun isEven(number : Int) = number % 2 == 0
 
-fun numdigits(number:Int):Int {
-    var count = 0
-    var temp = number
-    while(temp!=0){
-        temp/=10
-        count++
-    }
-    return count
-}
+fun digitCount(number : Int) = number.toString().length
 
-fun sumDigits(number:Int):Int{
-    var sum = 0
-    var temp = number
-    while(temp!=0){
-        sum += temp%10
-        temp/=10
-    }
-    return sum
-}
+fun digitSum(number: Int): Int = number.toString().map { it - '0' }.sum()
 
-fun reverse(number:Int):Int{
-    var str = number.toString()
-    var newRev = number.toString().reversed()
-    return newRev.toInt()
-}
+fun reverse(number : Int) = number.toString().reversed()
 
-fun isPalindrome(number:Int):Boolean {
-    val numStr = number.toString()
-    return number.toString() == numStr.reversed()
-}
+fun isPalindrome(number:Int) = number==reverse(number).toInt()
 
