@@ -74,6 +74,7 @@ fun factors(n: Int):String{
             return (",$i")
         }
     }
+    return result
 }
 fun sumofFactors(n: Int):Int{
     var sum=s
