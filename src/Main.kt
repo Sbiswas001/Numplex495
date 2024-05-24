@@ -278,13 +278,14 @@ fun isCircularPrimeNumber(number: Int): Boolean {
 
 fun isFermatNumber(number: Int): Boolean {
     if (number <= 0) return false
-    var k = 0
-    var fermatNumber = 1
-    while (fermatNumber < number) {
-        k++
-        fermatNumber = (1 shl (1 shl k)) + 1
+    if (number == 3 || number == 5) return true
+
+    var s = 4
+    val m = (1 shl number) - 1 // Equivalent to 2^number - 1
+    repeat(number - 2) {
+        s = (s * s - 2) % m
     }
-    return fermatNumber == number
+    return s == 0
 }
 
 fun isUglyNumber(number: Int): Boolean {
