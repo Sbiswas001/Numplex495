@@ -1,6 +1,6 @@
 **README**
 
-# Number Utilities
+# Numplex
 
 This Kotlin program offers a collection of utilities for analyzing and manipulating various properties of numbers. From basic operations like checking for even or odd numbers to more complex tasks like identifying special number types such as Fibonacci or Smith numbers, this program covers a wide range of functionalities.
 
