@@ -17,13 +17,21 @@ fun main(){
     result += "Factors of $num are ${factors(num).toSet().joinToString(separator = ", ")}\n"
     result += "Number of factors is ${factors(num).toSet().size}\n"
     result += "Sum of factors is ${factors(num).toSet().sum()}\n"
-    result += "$num is ${if(!isPrime(num)) "a Composite" else "not a Composite"} number\n"
+    result += "$num is ${if(!isPrimeNumber(num)) "a Composite" else "not a Composite"} number\n"
     result += "Binary representation is ${decimalToBin(num)}\n"
     result += "Octal representation is ${decimalToOct(num)}\n"
     result += "Hexadecimal representation is ${decimalToHex(num)}\n"
-    result += "$num is ${if(isNiven(num)) "a Niven"  else "not a Niven"} Number.\n"
-    result += "$num is ${if(isEmirp(num)) "an Emirp"  else "not an Emirp"} Number.\n"
-    result += "$num is ${if(isAbundant(num)<=0) "not an Abundant Number. " else "an Abundant Number with Abundance ${isAbundant(num)}."} \n"
+    result += "$num is ${if(isNivenNumber(num)) "a Niven"  else "not a Niven"} Number.\n"
+    result += "$num is ${if(isEmirpNumber(num)) "an Emirp"  else "not an Emirp"} Number.\n"
+    result += "$num is ${if(isAbundantNumber(num)<=0) "not an Abundant Number. " else "an Abundant Number with Abundance ${isAbundantNumber(num)}."} \n"
+    result += "$num is ${if(isTechNumber(num)) "a Tech"  else "not a Tech"} Number.\n"
+    result += "$num is ${if(isDisariumNumber(num)) "a Disarium"  else "not a Disarium"} Number.\n"
+    result += "$num is ${if(isPronicNumber(num)) "a Pronic"  else "not a Pronic"} Number.\n"
+
+    result += "$num is ${if(isTechNumber(num)) "a Tech"  else "not a Tech"} Number.\n"
+    result += "$num is ${if(isTechNumber(num)) "a Tech"  else "not a Tech"} Number.\n"
+    result += "$num is ${if(isTechNumber(num)) "a Tech"  else "not a Tech"} Number.\n"
+
     println(result)
 }
 
@@ -43,7 +51,7 @@ fun decimalToOct(n: Int): String = n.toString(8)
 
 fun decimalToHex(n: Int): String = n.toString(16).uppercase(Locale.getDefault())
 
-fun isPrime(n: Int): Boolean {
+fun isPrimeNumber(n: Int): Boolean {
     if (n <= 1) return false
     if (n <= 3) return true
     if (n % 2 == 0 || n % 3 == 0) return false
@@ -59,7 +67,7 @@ fun primeFactors(n: Int): List<Int> {
     var num = n
     val factors = mutableListOf<Int>()
     for (i in 2..num) {
-        if (isPrime(i)) {
+        if (isPrimeNumber(i)) {
             while (num % i == 0) {
                 factors.add(i)
                 num /= i
@@ -89,8 +97,48 @@ fun factors(n: Int): List<Int> {
     return factors
 }
 
-fun isNiven(number: Int): Boolean = if(number % digitSum(number) == 0) true else false
+fun isNivenNumber(number: Int): Boolean = if(number % digitSum(number) == 0) true else false
 
-fun isEmirp(number: Int): Boolean = if(isPrime(number)) (if(isPrime(reverse(number))) true else false) else false
+fun isEmirpNumber(number: Int): Boolean = if(isPrimeNumber(number)) (if(isPrimeNumber(reverse(number))) true else false) else false
 
-fun isAbundant(number : Int): Int = (factors(number).toSet().sum()-number) - number
+fun isAbundantNumber(number : Int): Int = (factors(number).toSet().sum()-number) - number
+
+fun isTechNumber(number: Int) : Boolean {
+    if (digitCount(number)%2!=0)
+        return false
+    val numberString = number.toString()
+    val halfLength = numberString.length / 2
+    val firstHalf = numberString.substring(0, halfLength)
+    val secondHalf = numberString.substring(halfLength)
+    val sumOfHalves = firstHalf.toInt() + secondHalf.toInt()
+    val squareOfSum = sumOfHalves * sumOfHalves
+    return squareOfSum == number
+}
+
+fun isDisariumNumber(number: Int): Boolean {
+    var num = number
+    var sum = 0
+    var position = 1
+    while (num > 0) {
+        val digit = num % 10
+        sum += Math.pow(digit.toDouble(), position.toDouble()).toInt()
+        position++
+        num /= 10
+    }
+    return sum == number
+}
+
+fun isPronicNumber(number: Int): Boolean {
+    var x = 0
+    while (x * (x + 1) <= number) {
+        if (x * (x + 1) == number) {
+            return true
+        }
+        x++
+    }
+    return false
+}
+
+
+
+//TODO automorphic, kaprekar, special, lucas, smith, armstrong, fibonacci, circular prime, prime palindrome, isbn, fermat, ugly, neon, spy, happy, duck
