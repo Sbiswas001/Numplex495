@@ -19,7 +19,7 @@ fun main(){
     result += "Sum of factors is ${factors(num).toSet().sum()}\n"
     result += "$num is ${if(!isPrimeNumber(num)) "a Composite" else "not a Composite"} number\n"
     result += "Binary representation is ${decimalToBin(num)}\n"
-    result += "Octal representation is ${decimalToOct(num)}\n"
+    result += "Octal  representation is ${decimalToOct(num)}\n"
     result += "Hexadecimal representation is ${decimalToHex(num)}\n"
     result += "$num is ${if(isPalindrome(num)) "a Palindrome" else "not a Palindrome"} number\n"
     result += "$num is ${if(isNivenNumber(num)) "a Niven"  else "not a Niven"} number\n"
